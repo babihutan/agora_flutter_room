@@ -1,0 +1,1 @@
+enum MeetingMedia {unknown, audio, video, none}
