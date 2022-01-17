@@ -6,7 +6,7 @@ class AgoraGridPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meeting Members'),
+        title: const Text('Meeting Members'),
       ),
       body: AgoraMeetingGrid(),
     );

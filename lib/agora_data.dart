@@ -1,5 +1,6 @@
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
+import 'enums.dart';
 
 class CbAudioVolumeInfo {
   DateTime date;
@@ -12,14 +13,14 @@ class CbAudioVolumeInfo {
 }
 
 class AgoraUser {
-  final MeetingMemberData member;
-  final PersonData person;
+  final String personName;
+  final MeetingRole role;
   final CbAudioVolumeInfo avi;
   final List<CbAudioVolumeInfo> aviHistory;
   final AudioStatus audioStatus;
   final VideoStatus videoStatus;
-  AgoraUser(this.member, this.person, this.avi, this.aviHistory,
-      this.audioStatus, this.videoStatus);
+  AgoraUser(this.personName,
+      this.role, this.avi, this.aviHistory, this.audioStatus, this.videoStatus);
 }
 
 class AudioStatus {
@@ -38,12 +39,12 @@ class VideoStatus {
 
 class AudioPlayerInfo {
   final AudioMixingStateCode audioPlayerState;
-  final int durationMs;
-  final int currentPlaybackPositionMs;
+  final int? durationMs;
+  final int? currentPlaybackPositionMs;
   AudioPlayerInfo(this.audioPlayerState,
       {@required this.durationMs, @required this.currentPlaybackPositionMs});
   int get timeRemainingMs {
-    return durationMs - currentPlaybackPositionMs;
+    return durationMs! - currentPlaybackPositionMs!;
   }
 
   int get timeRemainingSec {
@@ -51,10 +52,10 @@ class AudioPlayerInfo {
   }
 
   int get durationSec {
-    return (durationMs / 1000).truncate();
+    return (durationMs! / 1000).truncate();
   }
 
   int get playbackPositonSec {
-    return (currentPlaybackPositionMs / 1000).truncate();
+    return (currentPlaybackPositionMs! / 1000).truncate();
   }
 }
